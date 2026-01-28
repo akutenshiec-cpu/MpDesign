@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MP Designs | Tarifario V9 (Tooltips)</title>
+    <title>MP Designs | Tarifario V10 (Lux Effects)</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -29,52 +29,49 @@
             min-height: 100vh;
         }
 
-        /* --- TOOLTIP (La Burbuja Explicativa) --- */
-        .tooltip-term {
-            border-bottom: 1px dotted var(--info);
-            cursor: help;
-            color: #fff;
-            position: relative;
-            font-weight: 500;
+        /* --- ANIMACIONES DE DESTELLOS (NUEVO) --- */
+        @keyframes shine {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
 
-        .tooltip-term::after {
-            content: attr(data-tip);
+        @keyframes goldPulse {
+            0% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.1); border-color: var(--gold); }
+            50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); border-color: #fff; }
+            100% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.1); border-color: var(--gold); }
+        }
+
+        /* Efecto de brillo que recorre la tarjeta */
+        .card::before {
+            content: '';
             position: absolute;
-            bottom: 125%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #333;
-            color: #fff;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            width: 200px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: 1000;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
+            background-size: 200% 100%;
+            animation: shine 5s infinite linear; /* Se mueve solo */
             pointer-events: none;
-            border: 1px solid #555;
-            line-height: 1.3;
+            z-index: 1;
         }
 
-        .tooltip-term:hover::after, .tooltip-term:active::after {
-            visibility: visible;
-            opacity: 1;
+        /* --- TOOLTIPS --- */
+        .tooltip-term {
+            border-bottom: 1px dotted var(--info); cursor: help; color: #fff; position: relative; font-weight: 500;
         }
+        .tooltip-term::after {
+            content: attr(data-tip); position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%);
+            background: #333; color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem;
+            width: 200px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            visibility: hidden; opacity: 0; transition: opacity 0.3s; z-index: 1000; pointer-events: none;
+            border: 1px solid #555; line-height: 1.3;
+        }
+        .tooltip-term:hover::after, .tooltip-term:active::after { visibility: visible; opacity: 1; }
 
         /* --- HEADER --- */
         header {
-            background: var(--header-bg);
-            border-bottom: 1px solid #333;
-            position: sticky; top: 0; z-index: 100;
-            padding: 20px 20px;
+            background: var(--header-bg); border-bottom: 1px solid #333;
+            position: sticky; top: 0; z-index: 100; padding: 20px 20px;
             backdrop-filter: blur(10px);
         }
-
         .header-container { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
         .branding-row { width: 100%; display: flex; justify-content: space-between; align-items: center; }
 
@@ -82,7 +79,6 @@
         h1 span { color: var(--primary); }
         .subtitle { color: var(--text-muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
 
-        /* NAV TABS */
         .nav-tabs { display: flex; justify-content: center; gap: 8px; margin-top: 15px; flex-wrap: wrap; }
         .nav-btn {
             background: transparent; border: 1px solid #444; color: #ccc;
@@ -107,21 +103,27 @@
         .card {
             background: var(--card-bg); border-radius: 10px; padding: 20px;
             border: 1px solid #333; cursor: pointer; transition: all 0.2s ease;
-            position: relative; display: flex; flex-direction: column;
+            position: relative; display: flex; flex-direction: column; overflow: hidden; /* Importante para el brillo */
         }
         .card:hover { border-color: var(--primary); transform: translateY(-2px); }
-        .card.featured { border: 2px solid var(--gold); background: linear-gradient(145deg, #1e1e1e, #2a2510); }
+        
+        /* Estilos Destacados con Animación */
+        .card.featured { 
+            border: 2px solid var(--gold); 
+            background: linear-gradient(145deg, #1e1e1e, #2a2510);
+            animation: goldPulse 4s infinite ease-in-out; /* Pulso constante */
+        }
         .card.decoy { border: 1px dashed #555; opacity: 0.8; }
         
-        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; pointer-events: none; }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; pointer-events: none; position: relative; z-index: 2; }
         .card-title { font-size: 1.1rem; font-weight: 700; color: white; width: 65%; line-height: 1.2; }
         .card-price { font-size: 1.3rem; color: var(--primary); font-weight: 700; pointer-events: none; }
         .featured .card-price { color: var(--gold); }
 
-        .card-preview { color: var(--text-muted); font-size: 0.85rem; margin-top: 10px; line-height: 1.4; pointer-events: none; }
-        .expand-icon { text-align: center; color: var(--secondary); font-size: 1.5rem; margin-top: 10px; transition: transform 0.3s; pointer-events: none; }
+        .card-preview { color: var(--text-muted); font-size: 0.85rem; margin-top: 10px; line-height: 1.4; pointer-events: none; position: relative; z-index: 2; }
+        .expand-icon { text-align: center; color: var(--secondary); font-size: 1.5rem; margin-top: 10px; transition: transform 0.3s; pointer-events: none; position: relative; z-index: 2; }
 
-        .card-details { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #444; }
+        .card-details { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #444; position: relative; z-index: 2; }
         .card.active .card-details { display: block; animation: slideDown 0.3s; }
         @keyframes slideDown { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:translateY(0); } }
         .card.active .expand-icon { transform: rotate(180deg); }
@@ -142,13 +144,14 @@
         .select-btn {
             display: block; width: 100%; padding: 12px; margin-top: auto;
             background: transparent; border: 1px solid #555; color: white;
-            text-align: center; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.8rem; pointer-events: auto; z-index: 10;
+            text-align: center; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.8rem; pointer-events: auto; z-index: 10; position: relative;
         }
         .select-btn:hover { background: #333; }
         .card.featured .select-btn { background: var(--gold); color: black; border: none; }
         .card.selected { border-color: var(--success); background: #1a2e1a; }
         .card.selected .select-btn { background: var(--success); border-color: var(--success); color: white; }
 
+        /* MEDIA QUERIES */
         @media (max-width: 768px) {
             .branding-row { padding-bottom: 0; }
             .hamburger { display: flex; }
@@ -659,6 +662,7 @@
         function removeFromModal(index) {
             const item = cart[index];
             document.querySelectorAll('.card').forEach(c => {
+                // Comprobación simple de coincidencia de título
                 if(c.innerText.includes(item.name)) { 
                      c.classList.remove('selected');
                      const btn = c.querySelector('.select-btn');
@@ -701,16 +705,31 @@
             });
         }
 
+        // --- WHATSAPP INTELIGENTE ---
+        function getIcon(name) {
+            name = name.toLowerCase();
+            if(name.includes('web') || name.includes('landing')) return '💻';
+            if(name.includes('catálogo') || name.includes('curativa') || name.includes('tienda')) return '🛒';
+            if(name.includes('branding') || name.includes('identidad') || name.includes('logo') || name.includes('diseño')) return '🎨';
+            if(name.includes('marketing') || name.includes('social') || name.includes('educativo')) return '🚀';
+            if(name.includes('mantenimiento')) return '🛡️';
+            return '🔹';
+        }
+
         function sendToWhatsApp() {
             if (cart.length === 0) return;
-            let message = "Hola Marco, he revisado el tarifario. Me interesan estos servicios:\n\n";
+            let message = "Hola Marco, he armado mi plan ideal:\n\n";
             let total = 0;
+            
             cart.forEach(item => {
-                message += `🔹 *${item.name}* - $${item.price}\n`;
+                const icon = getIcon(item.name);
+                message += `${icon} *${item.name}* - $${item.price}\n`;
                 total += item.price;
             });
-            message += `\n💰 *Inversión Total Estimada: $${total}*\n`;
-            message += "\n¿Podemos agendar para revisar los detalles y plazos?";
+            
+            message += `\n💰 *Total Estimado: $${total}*\n`;
+            message += "\n¿Cuándo podemos empezar?";
+            
             const url = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
