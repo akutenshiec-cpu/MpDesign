@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MP Designs | Tarifas & Condiciones V7</title>
+    <title>MP Designs | Tarifario Completo V8</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -121,7 +121,7 @@
         .highlight { color: var(--success) !important; font-weight: bold; }
         .warning { color: #aaa; font-style: italic; }
 
-        /* SECCIÓN DE CONDICIONES (NUEVO) */
+        /* SECCIÓN DE CONDICIONES */
         .conditions-box {
             background: rgba(0,0,0,0.3); border-radius: 6px; padding: 10px;
             border-left: 2px solid #555; margin-bottom: 15px;
@@ -232,12 +232,54 @@
                         <ul class="conditions-list">
                             <li><strong>Entrega:</strong> 3 a 5 días hábiles.</li>
                             <li><strong>Cambios:</strong> 2 Rondas de revisión.</li>
-                            <li><strong>Hosting:</strong> Gratuito (Netlify).</li>
-                            <li><strong>Dominio:</strong> Cliente lo compra ($15/año aprox).</li>
+                            <li><strong>Dominio:</strong> Cliente lo compra.</li>
                         </ul>
                     </div>
                 </div>
                 <button class="select-btn" onclick="addToCart(event, 'Landing Page', 90, this)">Añadir</button>
+            </div>
+
+            <div class="card" style="border: 1px solid var(--primary);" onclick="toggleCard(this)">
+                <div class="card-header"><span class="card-title">Web Experiencia</span><span class="card-price">$220</span></div>
+                <p class="card-preview" style="color:var(--primary)">★ Estilo Inmersivo</p>
+                <div class="expand-icon">▼</div>
+                <div class="card-details">
+                    <ul class="detail-list">
+                        <li><strong>Escenografía Digital 3D.</strong></li>
+                        <li>Formulario reservas avanzado.</li>
+                        <li>Zonificación Visual (Jardín 5 Elementos).</li>
+                    </ul>
+                    <div class="conditions-box">
+                        <span class="conditions-title">📜 Condiciones y Plazos</span>
+                        <ul class="conditions-list">
+                            <li><strong>Entrega:</strong> 10 a 12 días hábiles.</li>
+                            <li><strong>Recursos:</strong> Se requiere material 3D o fotos.</li>
+                            <li><strong>Cambios:</strong> 2 Rondas estructurales.</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="select-btn" onclick="addToCart(event, 'Web Experiencia', 220, this)">Añadir</button>
+            </div>
+
+            <div class="card decoy" onclick="toggleCard(this)">
+                <div class="card-header"><span class="card-title">Web Informativa</span><span class="card-price">$220</span></div>
+                <p class="card-preview">Galería online sin carrito.</p>
+                <div class="expand-icon">▼</div>
+                <div class="card-details">
+                    <ul class="detail-list">
+                        <li>Diseño estático de productos.</li>
+                        <li class="warning">NO tiene carrito de compras.</li>
+                        <li class="warning">Pedidos manuales.</li>
+                    </ul>
+                    <div class="conditions-box">
+                        <span class="conditions-title">📜 Nota del Diseñador</span>
+                        <ul class="conditions-list">
+                            <li>Mismo precio que Web Experiencia pero con menos funciones.</li>
+                            <li>Recomendada solo si no deseas automatizar.</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="select-btn" onclick="addToCart(event, 'Web Informativa', 220, this)">Añadir</button>
             </div>
 
             <div class="card" onclick="toggleCard(this)">
@@ -254,9 +296,8 @@
                         <span class="conditions-title">📜 Condiciones y Plazos</span>
                         <ul class="conditions-list">
                             <li><strong>Entrega:</strong> 10 a 15 días hábiles.</li>
-                            <li><strong>Carga Inicial:</strong> Incluye hasta 20 productos.</li>
+                            <li><strong>Carga:</strong> Incluye hasta 20 productos.</li>
                             <li><strong>Cambios:</strong> 2 Rondas estructurales.</li>
-                            <li><strong>Hosting:</strong> Gratuito de por vida.</li>
                         </ul>
                     </div>
                 </div>
@@ -279,7 +320,6 @@
                         <ul class="conditions-list">
                             <li><strong>Entrega:</strong> 20 a 25 días hábiles.</li>
                             <li><strong>Desarrollo:</strong> Revisiones ilimitadas en boceto.</li>
-                            <li><strong>Entrega Final:</strong> 2 rondas de ajustes finos.</li>
                             <li><strong>Soporte:</strong> Prioritario por 6 meses.</li>
                         </ul>
                     </div>
@@ -303,14 +343,54 @@
                         <li>Archivos PNG y PDF.</li>
                     </ul>
                     <div class="conditions-box">
-                        <span class="conditions-title">📜 Condiciones</span>
+                        <span class="conditions-title">📜 Plazos</span>
                         <ul class="conditions-list">
                             <li><strong>Entrega:</strong> 3 días hábiles.</li>
-                            <li><strong>Cambios:</strong> 2 rondas sobre propuesta elegida.</li>
+                            <li><strong>Cambios:</strong> 2 rondas.</li>
                         </ul>
                     </div>
                 </div>
                 <button class="select-btn" onclick="addToCart(event, 'Branding Esencial', 75, this)">Añadir</button>
+            </div>
+
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-header"><span class="card-title">Plan Aplicado</span><span class="card-price">$100</span></div>
+                <p class="card-preview">Para uso en materiales reales.</p>
+                <div class="expand-icon">▼</div>
+                <div class="card-details">
+                    <ul class="detail-list">
+                        <li>3 Propuestas de Diseño.</li>
+                        <li>Archivos Editables (.AI/.SVG).</li>
+                        <li>Derechos de uso comercial.</li>
+                    </ul>
+                    <div class="conditions-box">
+                        <span class="conditions-title">📜 Plazos</span>
+                        <ul class="conditions-list">
+                            <li><strong>Entrega:</strong> 5-7 días hábiles.</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="select-btn" onclick="addToCart(event, 'Branding Aplicado', 100, this)">Añadir</button>
+            </div>
+
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-header"><span class="card-title">Plan Profesional</span><span class="card-price">$180</span></div>
+                <p class="card-preview">Sistema visual coherente.</p>
+                <div class="expand-icon">▼</div>
+                <div class="card-details">
+                    <ul class="detail-list">
+                        <li>Mini manual de imagen (PDF).</li>
+                        <li>Identidad Completa (Logo+Sello).</li>
+                        <li>Mockup Premium.</li>
+                    </ul>
+                    <div class="conditions-box">
+                        <span class="conditions-title">📜 Plazos</span>
+                        <ul class="conditions-list">
+                            <li><strong>Entrega:</strong> 7-12 días hábiles.</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="select-btn" onclick="addToCart(event, 'Branding Profesional', 180, this)">Añadir</button>
             </div>
 
             <div class="card featured" style="border-color:var(--info)" onclick="toggleCard(this)">
@@ -327,19 +407,38 @@
                         <span class="conditions-title">📜 Condiciones</span>
                         <ul class="conditions-list">
                             <li><strong>Entrega:</strong> 20+ días hábiles.</li>
-                            <li><strong>Proceso:</strong> Investigación + Bocetaje + Desarrollo.</li>
                             <li><strong>Cambios:</strong> Ajustes ilimitados en etapa boceto.</li>
                         </ul>
                     </div>
                 </div>
                 <button class="select-btn" onclick="addToCart(event, 'Branding Integral', 450, this)">Añadir</button>
             </div>
+
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-header"><span class="card-title">Línea de Producto</span><span class="card-price">$350</span></div>
+                <p class="card-preview">Diseño de etiquetas y envases.</p>
+                <div class="expand-icon">▼</div>
+                <div class="card-details">
+                     <ul class="detail-list">
+                        <li>Hasta 6 variantes de producto.</li>
+                        <li>Archivos listos para imprenta (Fogra39).</li>
+                        <li>Mockups de previsualización.</li>
+                    </ul>
+                    <div class="conditions-box">
+                        <span class="conditions-title">📜 Plazos</span>
+                        <ul class="conditions-list">
+                            <li><strong>Entrega:</strong> 3 semanas aprox.</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="select-btn" onclick="addToCart(event, 'Diseño Etiquetas', 350, this)">Añadir</button>
+            </div>
         </div>
     </section>
 
     <section id="social" class="category-section">
         <h2 class="category-title" style="color:var(--secondary); border-color:var(--secondary)">3. Estrategia Visual (Mensual)</h2>
-        <p style="font-size:0.85rem; color:#aaa; margin-bottom:15px; margin-left:10px;">*Precios por mes. No incluye Community Management (responder mensajes).</p>
+        <p style="font-size:0.85rem; color:#aaa; margin-bottom:15px; margin-left:10px;">*Precios por mes. Info técnica y videos brutos provistos por el cliente.</p>
         
         <div class="grid">
             <div class="card" onclick="toggleCard(this)">
@@ -354,10 +453,9 @@
                         <li class="warning">Sin Video.</li>
                     </ul>
                     <div class="conditions-box">
-                        <span class="conditions-title">📜 SLA (Nivel de Servicio)</span>
+                        <span class="conditions-title">📜 SLA</span>
                         <ul class="conditions-list">
                             <li><strong>Revisión Gráfica:</strong> 1 ronda por pieza.</li>
-                            <li><strong>Entrega:</strong> Lote mensual o semanal.</li>
                         </ul>
                     </div>
                 </div>
@@ -376,16 +474,37 @@
                         <li class="highlight">6 Historias.</li>
                     </ul>
                     <div class="conditions-box">
-                        <span class="conditions-title">📜 SLA (Nivel de Servicio)</span>
+                        <span class="conditions-title">📜 SLA</span>
                         <ul class="conditions-list">
-                            <li><strong>Info:</strong> Cliente provee texto técnico y videos.</li>
-                            <li><strong>Cambios Gráfica:</strong> 2 rondas de corrección.</li>
-                            <li><strong>Cambios Video:</strong> SOLO 1 ronda de edición.</li>
-                            <li><strong>Plazos:</strong> Se entrega 4 días después de recibir info.</li>
+                            <li><strong>Cambios Gráfica:</strong> 2 rondas.</li>
+                            <li><strong>Cambios Video:</strong> SOLO 1 ronda.</li>
+                            <li><strong>Entrega:</strong> 4 días post-entrega de info.</li>
                         </ul>
                     </div>
                 </div>
                 <button class="select-btn" onclick="addToCart(event, 'Marketing Educativo', 165, this)">Añadir</button>
+            </div>
+
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-header"><span class="card-title">Catálogo Pro</span><span class="card-price">$240</span></div>
+                <p class="card-preview">Volumen alto y prioridad.</p>
+                <div class="expand-icon">▼</div>
+                <div class="card-details">
+                    <ul class="detail-list">
+                        <li>6 Carruseles Técnicos.</li>
+                        <li>4 Posts Estáticos.</li>
+                        <li>2 Reels (Edición).</li>
+                        <li>10 Historias.</li>
+                    </ul>
+                    <div class="conditions-box">
+                        <span class="conditions-title">📜 SLA</span>
+                        <ul class="conditions-list">
+                            <li><strong>Prioridad:</strong> Alta en entregas.</li>
+                            <li><strong>Cambios:</strong> 2 rondas por pieza.</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="select-btn" onclick="addToCart(event, 'Marketing Catálogo Pro', 240, this)">Añadir</button>
             </div>
         </div>
     </section>
@@ -393,6 +512,25 @@
     <section id="mto" class="category-section">
         <h2 class="category-title" style="color:var(--success); border-color:var(--success)">4. Mantenimiento Web</h2>
         <div class="grid">
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-header"><span class="card-title">Básico</span><span class="card-price" style="color:var(--success)">$25</span></div>
+                <p class="card-preview">Seguridad y cambios menores.</p>
+                <div class="expand-icon">▼</div>
+                <div class="card-details">
+                    <ul class="detail-list">
+                        <li>1 Cambio semanal (Texto/Flyer).</li>
+                        <li>Monitoreo Seguridad.</li>
+                    </ul>
+                    <div class="conditions-box">
+                        <span class="conditions-title">📜 SLA</span>
+                        <ul class="conditions-list">
+                            <li><strong>Respuesta:</strong> 48 horas.</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="select-btn" onclick="addToCart(event, 'Mantenimiento Básico', 25, this)">Añadir</button>
+            </div>
+
             <div class="card" onclick="toggleCard(this)">
                 <div class="card-header"><span class="card-title">Dinámico</span><span class="card-price" style="color:var(--success)">$45</span></div>
                 <p class="card-preview">Para tiendas con cambios de precio.</p>
@@ -404,14 +542,33 @@
                         <li>Respaldo Mensual.</li>
                     </ul>
                     <div class="conditions-box">
-                        <span class="conditions-title">📜 Condiciones</span>
+                        <span class="conditions-title">📜 SLA</span>
                         <ul class="conditions-list">
-                            <li><strong>Respuesta:</strong> 24 a 48 horas laborables.</li>
-                            <li><strong>Horario:</strong> Lunes a Viernes.</li>
+                            <li><strong>Respuesta:</strong> 24 a 48 horas.</li>
                         </ul>
                     </div>
                 </div>
                 <button class="select-btn" onclick="addToCart(event, 'Mantenimiento Dinámico', 45, this)">Añadir</button>
+            </div>
+
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-header"><span class="card-title">Integral SEO</span><span class="card-price" style="color:var(--success)">$80</span></div>
+                <p class="card-preview">Gestión total y SEO.</p>
+                <div class="expand-icon">▼</div>
+                <div class="card-details">
+                    <ul class="detail-list">
+                        <li>Cambios ilimitados.</li>
+                        <li>Optimización SEO mensual.</li>
+                        <li>Informe de tráfico.</li>
+                    </ul>
+                    <div class="conditions-box">
+                        <span class="conditions-title">📜 SLA</span>
+                        <ul class="conditions-list">
+                            <li><strong>Prioridad:</strong> Máxima.</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="select-btn" onclick="addToCart(event, 'Mantenimiento Integral', 80, this)">Añadir</button>
             </div>
         </div>
     </section>
@@ -499,7 +656,7 @@
         function removeFromModal(index) {
             const item = cart[index];
             document.querySelectorAll('.card').forEach(c => {
-                if(c.innerText.includes(item.name)) { // Simple check
+                if(c.innerText.includes(item.name)) { 
                      c.classList.remove('selected');
                      const btn = c.querySelector('.select-btn');
                      btn.innerText = "AÑADIR";
