@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MP Designs | Tarifario V5 (Mobile Opt)</title>
+    <title>MP Designs | Tarifario Interactivo V6 (Tabs)</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -16,7 +16,7 @@
             --success: #4caf50;
             --danger: #ef5350;
             --gold: #FFD700;
-            --header-bg: rgba(18, 18, 18, 0.95);
+            --header-bg: rgba(18, 18, 18, 0.98);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,107 +26,93 @@
             background-color: var(--bg);
             color: var(--text);
             padding-bottom: 120px;
+            min-height: 100vh;
         }
 
-        /* --- HEADER OPTIMIZADO --- */
+        /* --- HEADER --- */
         header {
             background: var(--header-bg);
             border-bottom: 1px solid #333;
             position: sticky; top: 0; z-index: 100;
-            padding: 30px 20px;
+            padding: 20px 20px;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
         }
 
-        /* Contenedor Flex para el Header */
         .header-container {
             max-width: 1000px; margin: 0 auto;
             display: flex; flex-direction: column; align-items: center;
-            transition: all 0.3s ease;
         }
 
-        h1 { font-size: 2rem; letter-spacing: 1px; transition: font-size 0.3s; line-height: 1; }
+        .branding-row {
+            width: 100%; display: flex; justify-content: space-between; align-items: center;
+        }
+
+        h1 { font-size: 1.8rem; letter-spacing: 1px; line-height: 1; }
         h1 span { color: var(--primary); }
         .subtitle { 
-            color: var(--text-muted); font-size: 0.8rem; 
+            color: var(--text-muted); font-size: 0.75rem; 
             text-transform: uppercase; letter-spacing: 2px; margin-top: 5px;
-            transition: opacity 0.3s, height 0.3s, margin 0.3s;
-            height: auto; opacity: 1;
         }
 
-        /* NAV TABS (Escritorio) */
+        /* NAV TABS (Menú de Pestañas) */
         .nav-tabs {
-            display: flex; justify-content: center; gap: 8px; margin-top: 15px; flex-wrap: wrap;
-            transition: margin 0.3s;
+            display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap;
         }
         .nav-btn {
-            background: rgba(255,255,255,0.05); border: 1px solid #444; color: #ccc;
-            padding: 6px 14px; border-radius: 50px; cursor: pointer; text-decoration: none; font-size: 0.75rem;
-            transition: all 0.3s;
+            background: transparent; border: 1px solid #444; color: #ccc;
+            padding: 8px 16px; border-radius: 50px; cursor: pointer; 
+            text-decoration: none; font-size: 0.8rem; transition: all 0.3s;
+            user-select: none;
         }
-        .nav-btn:hover, .nav-btn.active { border-color: var(--primary); color: var(--primary); }
+        .nav-btn:hover { border-color: var(--primary); color: white; }
+        
+        /* Estado Activo del Botón */
+        .nav-btn.active { 
+            background: var(--primary); 
+            border-color: var(--primary); 
+            color: white; 
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(255, 85, 0, 0.4);
+        }
 
-        /* HAMBURGUESA (Oculta en PC) */
+        /* HAMBURGUESA (Móvil) */
         .hamburger {
             display: none; cursor: pointer; flex-direction: column; gap: 5px;
-            position: absolute; right: 20px; top: 25px;
         }
         .hamburger span {
             display: block; width: 25px; height: 3px; background-color: var(--text);
             transition: 0.3s; border-radius: 3px;
         }
 
-        /* --- CLASE SHRINK (Al hacer scroll) --- */
-        header.shrink { padding: 10px 20px; border-bottom: 1px solid var(--primary); }
-        header.shrink h1 { font-size: 1.4rem; margin: 0; }
-        header.shrink .subtitle { opacity: 0; height: 0; margin: 0; overflow: hidden; }
-        header.shrink .nav-tabs { margin-top: 5px; }
-        
-        /* Ajuste de hamburguesa en shrink */
-        header.shrink .hamburger { top: 15px; }
-
-        /* --- MEDIA QUERIES (Móvil) --- */
-        @media (max-width: 768px) {
-            .header-container { align-items: flex-start; }
-            
-            /* Mostrar botón hamburguesa */
-            .hamburger { display: flex; }
-            
-            /* Transformar menú a lista vertical oculta */
-            .nav-tabs {
-                position: absolute; top: 100%; left: 0; width: 100%;
-                background: #1a1a1a; flex-direction: column;
-                padding: 0; margin: 0; gap: 0;
-                max-height: 0; overflow: hidden; /* Oculto por defecto */
-                transition: max-height 0.4s ease-out;
-                border-bottom: 2px solid var(--primary);
-            }
-            
-            .nav-tabs.open { max-height: 400px; /* Se despliega */ }
-
-            .nav-btn {
-                border-radius: 0; border: none; border-bottom: 1px solid #333;
-                padding: 15px; width: 100%; text-align: left;
-                background: transparent; font-size: 1rem;
-            }
-            .nav-btn:hover { background: #222; padding-left: 25px; }
-
-            /* Animación Hamburguesa a 'X' */
-            .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
-            .hamburger.active span:nth-child(2) { opacity: 0; }
-            .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
-        }
-
-        /* SECCIONES & CARDS (Igual que antes) */
+        /* --- LÓGICA DE SECCIONES (TABS) --- */
         .category-section {
-            max-width: 1000px; margin: 0 auto; padding: 40px 20px 10px;
-            scroll-margin-top: 100px; /* Ajustado para compensar header */
-            border-bottom: 1px solid #222;
+            display: none; /* Oculto por defecto */
+            max-width: 1000px; margin: 20px auto; padding: 20px;
+            opacity: 0; transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
         }
+
+        /* Clase para mostrar la sección activa */
+        .category-section.active-section {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .category-title {
-            color: var(--primary); font-size: 1.4rem; margin-bottom: 15px;
-            border-left: 4px solid var(--secondary); padding-left: 10px; text-transform: uppercase;
+            color: var(--primary); font-size: 1.4rem; margin-bottom: 20px;
+            border-left: 4px solid var(--secondary); padding-left: 15px; text-transform: uppercase;
         }
+
+        /* GRID & CARDS */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
 
         .card {
@@ -145,18 +131,13 @@
         .featured .card-price { color: var(--gold); }
 
         .card-preview { color: var(--text-muted); font-size: 0.85rem; margin-top: 10px; line-height: 1.4; pointer-events: none; }
-        
-        .expand-icon { 
-            text-align: center; color: var(--secondary); font-size: 1.5rem; margin-top: 10px; 
-            transition: transform 0.3s; pointer-events: none; 
-        }
+        .expand-icon { text-align: center; color: var(--secondary); font-size: 1.5rem; margin-top: 10px; transition: transform 0.3s; pointer-events: none; }
 
         .card-details {
             display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #444;
-            animation: fadeIn 0.3s ease-in-out;
         }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-        .card.active .card-details { display: block; } 
+        .card.active .card-details { display: block; animation: slideDown 0.3s; }
+        @keyframes slideDown { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:translateY(0); } }
         .card.active .expand-icon { transform: rotate(180deg); }
 
         .detail-list { list-style: none; margin-bottom: 15px; pointer-events: auto; }
@@ -174,9 +155,35 @@
         }
         .select-btn:hover { background: #333; }
         .card.featured .select-btn { background: var(--gold); color: black; border: none; }
-        
         .card.selected { border-color: var(--success); background: #1a2e1a; }
         .card.selected .select-btn { background: var(--success); border-color: var(--success); color: white; }
+
+        /* HEADER SHRINK & MOBILE */
+        @media (max-width: 768px) {
+            .branding-row { padding-bottom: 0; }
+            .hamburger { display: flex; }
+            
+            .nav-tabs {
+                position: absolute; top: 100%; left: 0; width: 100%;
+                background: #1a1a1a; flex-direction: column;
+                padding: 0; margin: 0; gap: 0;
+                max-height: 0; overflow: hidden;
+                transition: max-height 0.4s ease-out;
+                border-bottom: 2px solid var(--primary);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+            }
+            .nav-tabs.open { max-height: 400px; }
+
+            .nav-btn {
+                border-radius: 0; border: none; border-bottom: 1px solid #333;
+                padding: 20px; width: 100%; text-align: left; font-size: 1rem;
+            }
+            .nav-btn.active { border-left: 5px solid var(--primary); background: #222; box-shadow: none; }
+            
+            .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+        }
 
         /* CARRITO */
         #cart-bar {
@@ -187,7 +194,6 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.8); z-index: 1000;
         }
         .cart-info { display: flex; flex-direction: column; cursor: pointer; }
-        .cart-label { font-size: 0.7rem; color: #aaa; text-transform: uppercase; }
         .cart-total { font-size: 1.1rem; font-weight: bold; color: white; }
         .view-cart-btn { background: #333; color: white; border: 1px solid #555; padding: 8px 15px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; }
 
@@ -198,15 +204,12 @@
         }
         .modal-content {
             background: #1e1e1e; width: 90%; max-width: 450px;
-            border-radius: 15px; border: 1px solid #444; padding: 25px;
-            position: relative;
+            border-radius: 15px; border: 1px solid #444; padding: 25px; position: relative;
         }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; }
         .close-modal { background: none; border: none; color: #aaa; font-size: 1.5rem; cursor: pointer; }
         .cart-items-list { max-height: 300px; overflow-y: auto; margin-bottom: 20px; }
         .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #333; }
-        .item-name { font-size: 0.9rem; color: #eee; }
-        .item-price { font-size: 0.9rem; color: var(--primary); font-weight: bold; margin-right: 10px; }
         .remove-btn { color: var(--danger); background: none; border: none; cursor: pointer; font-size: 1.2rem; }
         .whatsapp-btn-final { background: var(--success); color: white; width: 100%; padding: 15px; border: none; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; display: flex; justify-content: center; gap: 10px; }
     </style>
@@ -215,8 +218,8 @@
 
     <header id="main-header">
         <div class="header-container">
-            <div style="width:100%; display:flex; justify-content:space-between; align-items:center;">
-                <div class="branding">
+            <div class="branding-row">
+                <div>
                     <h1>MP <span>DESIGNS</span></h1>
                     <p class="subtitle">Tarifario de Servicios 2026</p>
                 </div>
@@ -226,16 +229,16 @@
             </div>
             
             <nav class="nav-tabs" id="nav-menu">
-                <a href="#web-info" class="nav-btn" onclick="closeMenu()">Web</a>
-                <a href="#ecommerce" class="nav-btn" onclick="closeMenu()">E-Commerce</a>
-                <a href="#branding" class="nav-btn" onclick="closeMenu()">Identidad</a>
-                <a href="#social" class="nav-btn active" onclick="closeMenu()">Estrategia Visual</a>
-                <a href="#mto" class="nav-btn" onclick="closeMenu()">Mantenimiento</a>
+                <button class="nav-btn active" onclick="showSection('web-info', this)">Web</button>
+                <button class="nav-btn" onclick="showSection('ecommerce', this)">E-Commerce</button>
+                <button class="nav-btn" onclick="showSection('branding', this)">Identidad</button>
+                <button class="nav-btn" onclick="showSection('social', this)">Estrategia</button>
+                <button class="nav-btn" onclick="showSection('mto', this)">Mantenimiento</button>
             </nav>
         </div>
     </header>
 
-    <section id="web-info" class="category-section">
+    <section id="web-info" class="category-section active-section">
         <h2 class="category-title">1. Presencia Web</h2>
         <div class="grid">
             <div class="card" onclick="toggleCard(this)">
@@ -393,7 +396,6 @@
     <section id="social" class="category-section">
         <h2 class="category-title" style="color:var(--secondary); border-color:var(--secondary)">4. Estrategia Visual</h2>
         <p style="font-size:0.85rem; color:#aaa; margin-bottom:15px; margin-left:10px;">*Mensual. Info técnica y videos brutos provistos por cliente.</p>
-        
         <div class="grid">
             <div class="card" onclick="toggleCard(this)">
                 <div class="card-header"><span class="card-title">Plan Mantenimiento</span><span class="card-price">$110</span></div>
@@ -511,17 +513,36 @@
     </div>
 
     <script>
-        // Lógica de Scroll y Header
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('main-header');
-            if (window.scrollY > 50) {
-                header.classList.add('shrink');
-            } else {
-                header.classList.remove('shrink');
-            }
-        });
+        // --- LÓGICA DE TABS (PESTAÑAS) ---
+        function showSection(sectionId, btn) {
+            // 1. Ocultar todas las secciones
+            document.querySelectorAll('.category-section').forEach(sec => {
+                sec.classList.remove('active-section');
+            });
 
-        // Lógica de Menú Hamburguesa
+            // 2. Desactivar todos los botones
+            document.querySelectorAll('.nav-btn').forEach(b => {
+                b.classList.remove('active');
+            });
+
+            // 3. Mostrar la sección elegida
+            const target = document.getElementById(sectionId);
+            if(target) {
+                target.classList.add('active-section');
+                // Scroll suave arriba para que el usuario vea el inicio de la sección
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // 4. Activar el botón clickeado
+            if(btn) {
+                btn.classList.add('active');
+            }
+
+            // 5. Cerrar menú móvil si está abierto
+            closeMenu();
+        }
+
+        // --- MENÚ HAMBURGUESA ---
         function toggleMenu() {
             const nav = document.getElementById('nav-menu');
             const hamburger = document.querySelector('.hamburger');
@@ -536,6 +557,7 @@
             hamburger.classList.remove('active');
         }
 
+        // --- TARJETAS & CARRITO ---
         const PHONE_NUMBER = "593963036594";
         let cart = [];
 
