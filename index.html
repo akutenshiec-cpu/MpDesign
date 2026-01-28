@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MP Designs | Tarifario Interactivo V6 (Tabs)</title>
+    <title>MP Designs | Tarifas & Condiciones V7</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -35,7 +35,6 @@
             border-bottom: 1px solid #333;
             position: sticky; top: 0; z-index: 100;
             padding: 20px 20px;
-            transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             box-shadow: 0 5px 20px rgba(0,0,0,0.5);
         }
@@ -49,66 +48,44 @@
             width: 100%; display: flex; justify-content: space-between; align-items: center;
         }
 
-        h1 { font-size: 1.8rem; letter-spacing: 1px; line-height: 1; }
+        h1 { font-size: 1.6rem; letter-spacing: 1px; line-height: 1; }
         h1 span { color: var(--primary); }
         .subtitle { 
-            color: var(--text-muted); font-size: 0.75rem; 
+            color: var(--text-muted); font-size: 0.7rem; 
             text-transform: uppercase; letter-spacing: 2px; margin-top: 5px;
         }
 
-        /* NAV TABS (Menú de Pestañas) */
+        /* NAV TABS */
         .nav-tabs {
-            display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 8px; margin-top: 15px; flex-wrap: wrap;
         }
         .nav-btn {
             background: transparent; border: 1px solid #444; color: #ccc;
-            padding: 8px 16px; border-radius: 50px; cursor: pointer; 
-            text-decoration: none; font-size: 0.8rem; transition: all 0.3s;
-            user-select: none;
+            padding: 8px 14px; border-radius: 50px; cursor: pointer; 
+            font-size: 0.8rem; transition: all 0.3s;
         }
         .nav-btn:hover { border-color: var(--primary); color: white; }
-        
-        /* Estado Activo del Botón */
         .nav-btn.active { 
-            background: var(--primary); 
-            border-color: var(--primary); 
-            color: white; 
-            font-weight: 600;
-            box-shadow: 0 0 15px rgba(255, 85, 0, 0.4);
+            background: var(--primary); border-color: var(--primary); color: white; font-weight: 600;
         }
 
-        /* HAMBURGUESA (Móvil) */
-        .hamburger {
-            display: none; cursor: pointer; flex-direction: column; gap: 5px;
-        }
-        .hamburger span {
-            display: block; width: 25px; height: 3px; background-color: var(--text);
-            transition: 0.3s; border-radius: 3px;
-        }
+        /* HAMBURGUESA */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .hamburger span { display: block; width: 25px; height: 3px; background-color: var(--text); border-radius: 3px; transition: 0.3s; }
 
-        /* --- LÓGICA DE SECCIONES (TABS) --- */
+        /* SECCIONES */
         .category-section {
-            display: none; /* Oculto por defecto */
-            max-width: 1000px; margin: 20px auto; padding: 20px;
+            display: none; max-width: 1000px; margin: 20px auto; padding: 20px;
             opacity: 0; transform: translateY(10px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
         }
-
-        /* Clase para mostrar la sección activa */
         .category-section.active-section {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-            animation: fadeIn 0.5s ease forwards;
+            display: block; opacity: 1; transform: translateY(0);
+            animation: fadeIn 0.4s ease forwards;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .category-title {
-            color: var(--primary); font-size: 1.4rem; margin-bottom: 20px;
+            color: var(--primary); font-size: 1.3rem; margin-bottom: 20px;
             border-left: 4px solid var(--secondary); padding-left: 15px; text-transform: uppercase;
         }
 
@@ -133,9 +110,7 @@
         .card-preview { color: var(--text-muted); font-size: 0.85rem; margin-top: 10px; line-height: 1.4; pointer-events: none; }
         .expand-icon { text-align: center; color: var(--secondary); font-size: 1.5rem; margin-top: 10px; transition: transform 0.3s; pointer-events: none; }
 
-        .card-details {
-            display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #444;
-        }
+        .card-details { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #444; }
         .card.active .card-details { display: block; animation: slideDown 0.3s; }
         @keyframes slideDown { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:translateY(0); } }
         .card.active .expand-icon { transform: rotate(180deg); }
@@ -145,6 +120,16 @@
         .detail-list li::before { content: "›"; color: var(--secondary); margin-right: 8px; font-weight: bold; }
         .highlight { color: var(--success) !important; font-weight: bold; }
         .warning { color: #aaa; font-style: italic; }
+
+        /* SECCIÓN DE CONDICIONES (NUEVO) */
+        .conditions-box {
+            background: rgba(0,0,0,0.3); border-radius: 6px; padding: 10px;
+            border-left: 2px solid #555; margin-bottom: 15px;
+        }
+        .conditions-title { font-size: 0.75rem; color: #888; text-transform: uppercase; font-weight: bold; margin-bottom: 5px; display: block; }
+        .conditions-list { list-style: none; padding: 0; }
+        .conditions-list li { font-size: 0.75rem; color: #aaa; margin-bottom: 4px; display: flex; gap: 6px; }
+        .conditions-list li::before { content: "•"; color: #666; }
 
         .select-btn {
             display: block; width: 100%; padding: 12px; margin-top: auto;
@@ -158,28 +143,20 @@
         .card.selected { border-color: var(--success); background: #1a2e1a; }
         .card.selected .select-btn { background: var(--success); border-color: var(--success); color: white; }
 
-        /* HEADER SHRINK & MOBILE */
+        /* MOBILE HEADER */
         @media (max-width: 768px) {
             .branding-row { padding-bottom: 0; }
             .hamburger { display: flex; }
-            
             .nav-tabs {
                 position: absolute; top: 100%; left: 0; width: 100%;
                 background: #1a1a1a; flex-direction: column;
-                padding: 0; margin: 0; gap: 0;
-                max-height: 0; overflow: hidden;
-                transition: max-height 0.4s ease-out;
-                border-bottom: 2px solid var(--primary);
+                padding: 0; margin: 0; gap: 0; max-height: 0; overflow: hidden;
+                transition: max-height 0.4s ease-out; border-bottom: 2px solid var(--primary);
                 box-shadow: 0 10px 20px rgba(0,0,0,0.8);
             }
             .nav-tabs.open { max-height: 400px; }
-
-            .nav-btn {
-                border-radius: 0; border: none; border-bottom: 1px solid #333;
-                padding: 20px; width: 100%; text-align: left; font-size: 1rem;
-            }
-            .nav-btn.active { border-left: 5px solid var(--primary); background: #222; box-shadow: none; }
-            
+            .nav-btn { border-radius: 0; border: none; border-bottom: 1px solid #333; padding: 20px; width: 100%; text-align: left; font-size: 1rem; }
+            .nav-btn.active { border-left: 5px solid var(--primary); background: #222; }
             .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
@@ -210,7 +187,6 @@
         .close-modal { background: none; border: none; color: #aaa; font-size: 1.5rem; cursor: pointer; }
         .cart-items-list { max-height: 300px; overflow-y: auto; margin-bottom: 20px; }
         .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #333; }
-        .remove-btn { color: var(--danger); background: none; border: none; cursor: pointer; font-size: 1.2rem; }
         .whatsapp-btn-final { background: var(--success); color: white; width: 100%; padding: 15px; border: none; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; display: flex; justify-content: center; gap: 10px; }
     </style>
 </head>
@@ -221,7 +197,7 @@
             <div class="branding-row">
                 <div>
                     <h1>MP <span>DESIGNS</span></h1>
-                    <p class="subtitle">Tarifario de Servicios 2026</p>
+                    <p class="subtitle">Tarifario & Condiciones 2026</p>
                 </div>
                 <div class="hamburger" onclick="toggleMenu()">
                     <span></span><span></span><span></span>
@@ -229,90 +205,84 @@
             </div>
             
             <nav class="nav-tabs" id="nav-menu">
-                <button class="nav-btn active" onclick="showSection('web-info', this)">Web</button>
-                <button class="nav-btn" onclick="showSection('ecommerce', this)">E-Commerce</button>
+                <button class="nav-btn active" onclick="showSection('web-ecosystem', this)">Ecosistema Web</button>
                 <button class="nav-btn" onclick="showSection('branding', this)">Identidad</button>
-                <button class="nav-btn" onclick="showSection('social', this)">Estrategia</button>
+                <button class="nav-btn" onclick="showSection('social', this)">Estrategia Visual</button>
                 <button class="nav-btn" onclick="showSection('mto', this)">Mantenimiento</button>
             </nav>
         </div>
     </header>
 
-    <section id="web-info" class="category-section active-section">
-        <h2 class="category-title">1. Presencia Web</h2>
+    <section id="web-ecosystem" class="category-section active-section">
+        <h2 class="category-title">1. Ecosistema Web & Tiendas</h2>
         <div class="grid">
+            
             <div class="card" onclick="toggleCard(this)">
                 <div class="card-header"><span class="card-title">Landing Page</span><span class="card-price">$90</span></div>
-                <p class="card-preview">Sitio One-Page presentación.</p>
+                <p class="card-preview">Sitio One-Page de presentación rápida.</p>
                 <div class="expand-icon">▼</div>
                 <div class="card-details">
                     <ul class="detail-list">
-                        <li>Scroll continuo.</li>
+                        <li>Scroll continuo (1 Página larga).</li>
                         <li>Secciones: Info, Servicios, Contacto.</li>
-                        <li>Botón WhatsApp.</li>
+                        <li>Botón flotante WhatsApp.</li>
                     </ul>
+                    <div class="conditions-box">
+                        <span class="conditions-title">📜 Condiciones y Plazos</span>
+                        <ul class="conditions-list">
+                            <li><strong>Entrega:</strong> 3 a 5 días hábiles.</li>
+                            <li><strong>Cambios:</strong> 2 Rondas de revisión.</li>
+                            <li><strong>Hosting:</strong> Gratuito (Netlify).</li>
+                            <li><strong>Dominio:</strong> Cliente lo compra ($15/año aprox).</li>
+                        </ul>
+                    </div>
                 </div>
                 <button class="select-btn" onclick="addToCart(event, 'Landing Page', 90, this)">Añadir</button>
-            </div>
-            
-            <div class="card" style="border: 1px solid var(--primary);" onclick="toggleCard(this)">
-                <div class="card-header"><span class="card-title">Web Experiencia</span><span class="card-price">$220</span></div>
-                <p class="card-preview" style="color:var(--primary)">★ Estilo Inmersivo</p>
-                <div class="expand-icon">▼</div>
-                <div class="card-details">
-                    <ul class="detail-list">
-                        <li><strong>Escenografía Digital 3D.</strong></li>
-                        <li>Formulario reservas avanzado.</li>
-                        <li>Zonificación Visual.</li>
-                    </ul>
-                </div>
-                <button class="select-btn" onclick="addToCart(event, 'Web Experiencia', 220, this)">Añadir</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="ecommerce" class="category-section">
-        <h2 class="category-title" style="color:var(--gold); border-color:var(--gold);">2. E-Commerce</h2>
-        <div class="grid">
-            <div class="card decoy" onclick="toggleCard(this)">
-                <div class="card-header"><span class="card-title">Web Informativa</span><span class="card-price">$220</span></div>
-                <p class="card-preview">Galería online sin cobro.</p>
-                <div class="expand-icon">▼</div>
-                <div class="card-details">
-                    <ul class="detail-list">
-                        <li>Diseño estático.</li>
-                        <li class="warning">NO tiene carrito.</li>
-                        <li class="warning">Suma manual.</li>
-                    </ul>
-                </div>
-                <button class="select-btn" onclick="addToCart(event, 'Web Informativa', 220, this)">Añadir</button>
             </div>
 
             <div class="card" onclick="toggleCard(this)">
                 <div class="card-header"><span class="card-title">Catálogo Pro</span><span class="card-price">$380</span></div>
-                <p class="card-preview">Ventas a WhatsApp.</p>
+                <p class="card-preview">Tienda funcional con pedidos a WhatsApp.</p>
                 <div class="expand-icon">▼</div>
                 <div class="card-details">
                     <ul class="detail-list">
-                        <li>Tecnología HTML/JS.</li>
+                        <li>Tecnología HTML/JS (Carga ultra rápida).</li>
                         <li><strong>Carrito + Pedido Formateado</strong>.</li>
-                        <li>Hosting Gratis de por vida.</li>
+                        <li>Panel de administración básico.</li>
                     </ul>
+                    <div class="conditions-box">
+                        <span class="conditions-title">📜 Condiciones y Plazos</span>
+                        <ul class="conditions-list">
+                            <li><strong>Entrega:</strong> 10 a 15 días hábiles.</li>
+                            <li><strong>Carga Inicial:</strong> Incluye hasta 20 productos.</li>
+                            <li><strong>Cambios:</strong> 2 Rondas estructurales.</li>
+                            <li><strong>Hosting:</strong> Gratuito de por vida.</li>
+                        </ul>
+                    </div>
                 </div>
                 <button class="select-btn" onclick="addToCart(event, 'Catálogo Pro', 380, this)">Añadir</button>
             </div>
 
             <div class="card featured" onclick="toggleCard(this)">
                 <div class="card-header"><span class="card-title">Curativa Premium</span><span class="card-price">$430</span></div>
-                <p class="card-preview">Lujo + Entorno 3D.</p>
+                <p class="card-preview">Lujo + Entorno 3D + Glassmorphism.</p>
                 <div class="expand-icon">▼</div>
                 <div class="card-details">
                     <ul class="detail-list">
                         <li><strong>Todo lo del Catálogo Pro +</strong></li>
-                        <li>15 Mockups Hiperrealistas.</li>
-                        <li>Estética Glassmorphism.</li>
-                        <li class="highlight">4 Ventanas Mantenimiento.</li>
+                        <li>15 Mockups Hiperrealistas (Escenografía 3D).</li>
+                        <li>Estética de Vidrio (Glassmorphism).</li>
+                        <li class="highlight">4 Ventanas Mantenimiento Anual.</li>
                     </ul>
+                    <div class="conditions-box">
+                        <span class="conditions-title">📜 Condiciones y Plazos</span>
+                        <ul class="conditions-list">
+                            <li><strong>Entrega:</strong> 20 a 25 días hábiles.</li>
+                            <li><strong>Desarrollo:</strong> Revisiones ilimitadas en boceto.</li>
+                            <li><strong>Entrega Final:</strong> 2 rondas de ajustes finos.</li>
+                            <li><strong>Soporte:</strong> Prioritario por 6 meses.</li>
+                        </ul>
+                    </div>
                 </div>
                 <button class="select-btn" onclick="addToCart(event, 'Curativa Premium', 430, this)">Añadir</button>
             </div>
@@ -320,47 +290,27 @@
     </section>
 
     <section id="branding" class="category-section">
-        <h2 class="category-title">3. Identidad Visual</h2>
+        <h2 class="category-title">2. Identidad Visual</h2>
         <div class="grid">
             <div class="card" onclick="toggleCard(this)">
                 <div class="card-header"><span class="card-title">Plan Esencial</span><span class="card-price">$75</span></div>
-                <p class="card-preview">Logo funcional.</p>
+                <p class="card-preview">Logo funcional para arrancar.</p>
                 <div class="expand-icon">▼</div>
                 <div class="card-details">
                     <ul class="detail-list">
                         <li>2 Propuestas Logo.</li>
                         <li>Paleta y Tipografía.</li>
+                        <li>Archivos PNG y PDF.</li>
                     </ul>
+                    <div class="conditions-box">
+                        <span class="conditions-title">📜 Condiciones</span>
+                        <ul class="conditions-list">
+                            <li><strong>Entrega:</strong> 3 días hábiles.</li>
+                            <li><strong>Cambios:</strong> 2 rondas sobre propuesta elegida.</li>
+                        </ul>
+                    </div>
                 </div>
                 <button class="select-btn" onclick="addToCart(event, 'Branding Esencial', 75, this)">Añadir</button>
-            </div>
-
-            <div class="card" onclick="toggleCard(this)">
-                <div class="card-header"><span class="card-title">Plan Aplicado</span><span class="card-price">$100</span></div>
-                <p class="card-preview">Para materiales reales.</p>
-                <div class="expand-icon">▼</div>
-                <div class="card-details">
-                    <ul class="detail-list">
-                        <li>3 Propuestas.</li>
-                        <li>Archivos Editables (.AI).</li>
-                        <li>Uso comercial.</li>
-                    </ul>
-                </div>
-                <button class="select-btn" onclick="addToCart(event, 'Branding Aplicado', 100, this)">Añadir</button>
-            </div>
-
-            <div class="card" onclick="toggleCard(this)">
-                <div class="card-header"><span class="card-title">Plan Profesional</span><span class="card-price">$180</span></div>
-                <p class="card-preview">Sistema visual coherente.</p>
-                <div class="expand-icon">▼</div>
-                <div class="card-details">
-                    <ul class="detail-list">
-                        <li>Mini manual de imagen.</li>
-                        <li>Identidad Completa (Sello+Variante).</li>
-                        <li>Mockup Premium.</li>
-                    </ul>
-                </div>
-                <button class="select-btn" onclick="addToCart(event, 'Branding Profesional', 180, this)">Añadir</button>
             </div>
 
             <div class="card featured" style="border-color:var(--info)" onclick="toggleCard(this)">
@@ -369,37 +319,32 @@
                 <div class="expand-icon">▼</div>
                 <div class="card-details">
                     <ul class="detail-list">
-                        <li>Brandbook Técnico.</li>
-                        <li>Sistema Pantone.</li>
+                        <li>Brandbook Técnico (Manual).</li>
+                        <li>Sistema Pantone + Imprenta.</li>
                         <li>Asesoría post-entrega.</li>
                     </ul>
+                    <div class="conditions-box">
+                        <span class="conditions-title">📜 Condiciones</span>
+                        <ul class="conditions-list">
+                            <li><strong>Entrega:</strong> 20+ días hábiles.</li>
+                            <li><strong>Proceso:</strong> Investigación + Bocetaje + Desarrollo.</li>
+                            <li><strong>Cambios:</strong> Ajustes ilimitados en etapa boceto.</li>
+                        </ul>
+                    </div>
                 </div>
                 <button class="select-btn" onclick="addToCart(event, 'Branding Integral', 450, this)">Añadir</button>
-            </div>
-
-            <div class="card" onclick="toggleCard(this)">
-                <div class="card-header"><span class="card-title">Línea de Producto</span><span class="card-price">$350</span></div>
-                <p class="card-preview">Etiquetas y envases.</p>
-                <div class="expand-icon">▼</div>
-                <div class="card-details">
-                     <ul class="detail-list">
-                        <li>Hasta 6 variantes.</li>
-                        <li>Archivos imprenta (Fogra39).</li>
-                        <li>Mockups visualización.</li>
-                    </ul>
-                </div>
-                <button class="select-btn" onclick="addToCart(event, 'Diseño Etiquetas', 350, this)">Añadir</button>
             </div>
         </div>
     </section>
 
     <section id="social" class="category-section">
-        <h2 class="category-title" style="color:var(--secondary); border-color:var(--secondary)">4. Estrategia Visual</h2>
-        <p style="font-size:0.85rem; color:#aaa; margin-bottom:15px; margin-left:10px;">*Mensual. Info técnica y videos brutos provistos por cliente.</p>
+        <h2 class="category-title" style="color:var(--secondary); border-color:var(--secondary)">3. Estrategia Visual (Mensual)</h2>
+        <p style="font-size:0.85rem; color:#aaa; margin-bottom:15px; margin-left:10px;">*Precios por mes. No incluye Community Management (responder mensajes).</p>
+        
         <div class="grid">
             <div class="card" onclick="toggleCard(this)">
                 <div class="card-header"><span class="card-title">Plan Mantenimiento</span><span class="card-price">$110</span></div>
-                <p class="card-preview">Presencia básica.</p>
+                <p class="card-preview">Presencia básica constante.</p>
                 <div class="expand-icon">▼</div>
                 <div class="card-details">
                     <ul class="detail-list">
@@ -408,13 +353,20 @@
                         <li>4 Historias.</li>
                         <li class="warning">Sin Video.</li>
                     </ul>
+                    <div class="conditions-box">
+                        <span class="conditions-title">📜 SLA (Nivel de Servicio)</span>
+                        <ul class="conditions-list">
+                            <li><strong>Revisión Gráfica:</strong> 1 ronda por pieza.</li>
+                            <li><strong>Entrega:</strong> Lote mensual o semanal.</li>
+                        </ul>
+                    </div>
                 </div>
                 <button class="select-btn" onclick="addToCart(event, 'Marketing Mantenimiento', 110, this)">Añadir</button>
             </div>
 
             <div class="card featured" style="border-color:var(--secondary)" onclick="toggleCard(this)">
                 <div class="card-header"><span class="card-title">Plan Educativo</span><span class="card-price" style="color:var(--secondary)">$165</span></div>
-                <p class="card-preview">Explicación del catálogo.</p>
+                <p class="card-preview">Explicación a fondo del catálogo.</p>
                 <div class="expand-icon">▼</div>
                 <div class="card-details">
                     <ul class="detail-list">
@@ -422,69 +374,44 @@
                         <li>2 Posts Estáticos.</li>
                         <li>1 Reel (Post-Producción).</li>
                         <li class="highlight">6 Historias.</li>
-                        <li>Composición Digital.</li>
                     </ul>
+                    <div class="conditions-box">
+                        <span class="conditions-title">📜 SLA (Nivel de Servicio)</span>
+                        <ul class="conditions-list">
+                            <li><strong>Info:</strong> Cliente provee texto técnico y videos.</li>
+                            <li><strong>Cambios Gráfica:</strong> 2 rondas de corrección.</li>
+                            <li><strong>Cambios Video:</strong> SOLO 1 ronda de edición.</li>
+                            <li><strong>Plazos:</strong> Se entrega 4 días después de recibir info.</li>
+                        </ul>
+                    </div>
                 </div>
                 <button class="select-btn" onclick="addToCart(event, 'Marketing Educativo', 165, this)">Añadir</button>
-            </div>
-            
-            <div class="card" onclick="toggleCard(this)">
-                <div class="card-header"><span class="card-title">Catálogo Pro</span><span class="card-price">$240</span></div>
-                <p class="card-preview">Volumen alto.</p>
-                <div class="expand-icon">▼</div>
-                <div class="card-details">
-                    <ul class="detail-list">
-                        <li>6 Carruseles Técnicos.</li>
-                        <li>4 Posts Estáticos.</li>
-                        <li>2 Reels (Edición).</li>
-                        <li>10 Historias.</li>
-                    </ul>
-                </div>
-                <button class="select-btn" onclick="addToCart(event, 'Marketing Catálogo Pro', 240, this)">Añadir</button>
             </div>
         </div>
     </section>
 
     <section id="mto" class="category-section">
-        <h2 class="category-title" style="color:var(--success); border-color:var(--success)">5. Mantenimiento Web</h2>
+        <h2 class="category-title" style="color:var(--success); border-color:var(--success)">4. Mantenimiento Web</h2>
         <div class="grid">
             <div class="card" onclick="toggleCard(this)">
-                <div class="card-header"><span class="card-title">Básico</span><span class="card-price" style="color:var(--success)">$25</span></div>
-                <p class="card-preview">Seguridad y cambios menores.</p>
-                <div class="expand-icon">▼</div>
-                <div class="card-details">
-                    <ul class="detail-list">
-                        <li>1 Cambio semanal.</li>
-                        <li>Monitoreo Seguridad.</li>
-                    </ul>
-                </div>
-                <button class="select-btn" onclick="addToCart(event, 'Mantenimiento Básico', 25, this)">Añadir</button>
-            </div>
-
-            <div class="card" onclick="toggleCard(this)">
                 <div class="card-header"><span class="card-title">Dinámico</span><span class="card-price" style="color:var(--success)">$45</span></div>
-                <p class="card-preview">Cambios frecuentes precios.</p>
+                <p class="card-preview">Para tiendas con cambios de precio.</p>
                 <div class="expand-icon">▼</div>
                 <div class="card-details">
                     <ul class="detail-list">
                         <li>Actualización precios semanal.</li>
                         <li>Cambio Banners.</li>
+                        <li>Respaldo Mensual.</li>
                     </ul>
+                    <div class="conditions-box">
+                        <span class="conditions-title">📜 Condiciones</span>
+                        <ul class="conditions-list">
+                            <li><strong>Respuesta:</strong> 24 a 48 horas laborables.</li>
+                            <li><strong>Horario:</strong> Lunes a Viernes.</li>
+                        </ul>
+                    </div>
                 </div>
                 <button class="select-btn" onclick="addToCart(event, 'Mantenimiento Dinámico', 45, this)">Añadir</button>
-            </div>
-
-            <div class="card" onclick="toggleCard(this)">
-                <div class="card-header"><span class="card-title">Integral SEO</span><span class="card-price" style="color:var(--success)">$80</span></div>
-                <p class="card-preview">Gestión total y SEO.</p>
-                <div class="expand-icon">▼</div>
-                <div class="card-details">
-                    <ul class="detail-list">
-                        <li>Cambios ilimitados.</li>
-                        <li>SEO mensual.</li>
-                    </ul>
-                </div>
-                <button class="select-btn" onclick="addToCart(event, 'Mantenimiento Integral', 80, this)">Añadir</button>
             </div>
         </div>
     </section>
@@ -513,51 +440,30 @@
     </div>
 
     <script>
-        // --- LÓGICA DE TABS (PESTAÑAS) ---
+        // --- LÓGICA DE TABS ---
         function showSection(sectionId, btn) {
-            // 1. Ocultar todas las secciones
-            document.querySelectorAll('.category-section').forEach(sec => {
-                sec.classList.remove('active-section');
-            });
-
-            // 2. Desactivar todos los botones
-            document.querySelectorAll('.nav-btn').forEach(b => {
-                b.classList.remove('active');
-            });
-
-            // 3. Mostrar la sección elegida
+            document.querySelectorAll('.category-section').forEach(sec => sec.classList.remove('active-section'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             const target = document.getElementById(sectionId);
             if(target) {
                 target.classList.add('active-section');
-                // Scroll suave arriba para que el usuario vea el inicio de la sección
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-
-            // 4. Activar el botón clickeado
-            if(btn) {
-                btn.classList.add('active');
-            }
-
-            // 5. Cerrar menú móvil si está abierto
+            if(btn) btn.classList.add('active');
             closeMenu();
         }
 
         // --- MENÚ HAMBURGUESA ---
         function toggleMenu() {
-            const nav = document.getElementById('nav-menu');
-            const hamburger = document.querySelector('.hamburger');
-            nav.classList.toggle('open');
-            hamburger.classList.toggle('active');
+            document.getElementById('nav-menu').classList.toggle('open');
+            document.querySelector('.hamburger').classList.toggle('active');
         }
-
         function closeMenu() {
-            const nav = document.getElementById('nav-menu');
-            const hamburger = document.querySelector('.hamburger');
-            nav.classList.remove('open');
-            hamburger.classList.remove('active');
+            document.getElementById('nav-menu').classList.remove('open');
+            document.querySelector('.hamburger').classList.remove('active');
         }
 
-        // --- TARJETAS & CARRITO ---
+        // --- LÓGICA CARRITO ---
         const PHONE_NUMBER = "593963036594";
         let cart = [];
 
@@ -580,14 +486,11 @@
                 card.classList.remove('selected');
                 btn.innerText = "AÑADIR";
                 if(card.classList.contains('featured')) {
-                    btn.style.background = "var(--gold)";
-                    btn.style.color = "black";
+                    btn.style.background = "var(--gold)"; btn.style.color = "black";
                 } else if(card.querySelector('.card-price').style.color.includes('success') || card.querySelector('.card-price').style.color.includes('info')) {
-                    btn.style.background = "transparent"; 
-                    btn.style.color = "white";
+                    btn.style.background = "transparent"; btn.style.color = "white";
                 } else {
-                    btn.style.background = "transparent";
-                    btn.style.color = "white";
+                    btn.style.background = "transparent"; btn.style.color = "white";
                 }
             }
             updateCartUI();
@@ -595,19 +498,15 @@
 
         function removeFromModal(index) {
             const item = cart[index];
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(c => {
-                const title = c.querySelector('.card-title').innerText;
-                if(item.name.includes(title) || title.includes(item.name)) {
+            document.querySelectorAll('.card').forEach(c => {
+                if(c.innerText.includes(item.name)) { // Simple check
                      c.classList.remove('selected');
                      const btn = c.querySelector('.select-btn');
                      btn.innerText = "AÑADIR";
                      if(c.classList.contains('featured')) {
-                        btn.style.background = "var(--gold)";
-                        btn.style.color = "black";
+                        btn.style.background = "var(--gold)"; btn.style.color = "black";
                      } else {
-                        btn.style.background = "transparent";
-                        btn.style.color = "white";
+                        btn.style.background = "transparent"; btn.style.color = "white";
                      }
                 }
             });
@@ -619,25 +518,13 @@
         function updateCartUI() {
             const bar = document.getElementById('cart-bar');
             const total = cart.reduce((sum, i) => sum + i.price, 0);
-            
             document.getElementById('bar-total').innerText = `$${total}`;
             document.getElementById('modal-total').innerText = `$${total}`;
-
-            if (cart.length > 0) {
-                bar.style.display = 'flex';
-            } else {
-                bar.style.display = 'none';
-                closeModal(); 
-            }
+            if (cart.length > 0) { bar.style.display = 'flex'; } else { bar.style.display = 'none'; closeModal(); }
         }
 
-        function openModal() {
-            renderCartItems();
-            document.getElementById('cartModal').style.display = 'flex';
-        }
-        function closeModal() {
-            document.getElementById('cartModal').style.display = 'none';
-        }
+        function openModal() { renderCartItems(); document.getElementById('cartModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('cartModal').style.display = 'none'; }
 
         function renderCartItems() {
             const list = document.getElementById('cartList');
@@ -650,32 +537,27 @@
                             <span class="item-price">$${item.price}</span>
                             <button class="remove-btn" onclick="removeFromModal(${index})">×</button>
                         </div>
-                    </div>
-                `;
+                    </div>`;
             });
         }
 
         function sendToWhatsApp() {
             if (cart.length === 0) return;
-            let message = "Hola Marco, me interesa trabajar contigo. He seleccionado estos servicios:\n\n";
+            let message = "Hola Marco, he revisado el tarifario. Me interesan estos servicios:\n\n";
             let total = 0;
             cart.forEach(item => {
                 message += `🔹 *${item.name}* - $${item.price}\n`;
                 total += item.price;
             });
             message += `\n💰 *Inversión Total Estimada: $${total}*\n`;
-            message += "\nQuedo pendiente para coordinar los detalles.";
+            message += "\n¿Podemos agendar para revisar los detalles y plazos?";
             const url = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
 
         window.onclick = function(event) {
-            const modal = document.getElementById('cartModal');
-            if (event.target == modal) {
-                closeModal();
-            }
+            if (event.target == document.getElementById('cartModal')) closeModal();
         }
     </script>
-
 </body>
 </html>
